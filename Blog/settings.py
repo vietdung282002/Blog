@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ["vietdung282002.pythonanywhere.com", "127.0.0.1"]
 
 # Application definition
 
-SITE_ID = 4
+SITE_ID = 2
 
 INSTALLED_APPS = [
     "django.contrib.admin",
