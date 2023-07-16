@@ -31,7 +31,8 @@ def search(request):
     search_content = Post.objects.filter(content__icontains=query)
     search_result = search_title.union(search_content, search_user_posts)
 
-    param = {'search_result': search_result, 'search_term': query, 'search_user': search_user}
+    param = {'search_result': search_result,
+             'search_term': query, 'search_user': search_user}
     return render(request, 'search.html', param)
 
 
@@ -50,16 +51,19 @@ def view_profile(request, user_name):
     try:
         return render(request, 'profile.html', param)
     except:
-        messages.warning(request, f"You have to login before access {user_name}'s profile.")
+        messages.warning(
+            request, f"You have to login before access {user_name}'s profile.")
         return redirect('home')
 
 
 def view_post(request, post_title):
     get_post = Post.objects.get(title=post_title)
-    all_rel_posts = Post.objects.filter(user__username=get_post.user)
+    # all_rel_posts = Post.objects.filter(user__username=get_post.user)
+    all_rel_posts = Post.objects.filter(
+        user__username=get_post.user).exclude(title=post_title)
     post_comments = get_post.comment_set.all().order_by('-id')
-
-    param = {'post_data': get_post, 'all_posts': all_rel_posts, 'post_comments': post_comments}
+    param = {'post_data': get_post, 'all_posts': all_rel_posts,
+             'post_comments': post_comments}
     return render(request, 'post.html', param)
 
 
@@ -79,8 +83,9 @@ def delete_post(request, post_title):
     messages.success(request, 'Post has been deleted succsfully.')
     return redirect(f'/profile/{get_post.user.username}')
 
-def delete_comment(request, post_title,comment_id):
-    get_post = Comment.objects.get(id = comment_id)
+
+def delete_comment(request, post_title, comment_id):
+    get_post = Comment.objects.get(id=comment_id)
     get_post.delete()
     messages.success(request, 'Comment has been deleted succsfully.')
     return redirect(f'/post/{post_title}')
@@ -109,7 +114,8 @@ class WritePostView(ListView):
                 title = title + " (" + str(count) + ")"
 
             content = form.cleaned_data['content']
-            add_post = self.model.objects.create(user=user_obj, title=title, content=content)
+            add_post = self.model.objects.create(
+                user=user_obj, title=title, content=content)
             add_post.save()
 
             messages.success(request, 'Post has been uploaded succsfully.')

@@ -1,61 +1,71 @@
 {% extends 'base.html' %}
 
 <!--{% load static %}-->
-{% block title %}
-{{user_data.username}}
-{% endblock %}}
-{% block body %}
+{% block title %} {{user_data.username}} {% endblock %}} {% block body %}
 
 <div class="container text-center">
-  <div class="row" style="display: inline-block;">
+  <div class="row" style="display: inline-block">
     <div class="col-sm">
       <div class="card-header">
-        <img src="{% static user_data.profile_pic.url %}" width="180" height="180" class="img-thumbnail" alt="profile_image" style="">
-   <br>
-
-
-  </div>
-    </div>
-    <div class="col-8">
-      <div class="card-body">
-        <h2 class="card-title">{{user_data.username}}</h2>
-
-        <br>
-
+        <img
+          src="{% static user_data.profile_pic.url %}"
+          width="180"
+          height="180"
+          class="img-thumbnail"
+          alt="profile_image"
+          style=""
+        />
+        <br />
       </div>
     </div>
-
-  </div>
-</div>
-
-<div class="card mx-5 my-3" style="display: flex;align-items: center;" >
-  <h3>Posts({{user_posts.count }})</h3>
-  <br>
-  {% if user_posts %}
-    {% for post in user_posts %}
-
-  <div class="card" style="border: 2px solid; min-width: 80%;max-width: 80%;margin-bottom:10px;">
-  <div class="card-body">
-    <h5 class="card-title"><a href="{% url 'view_post' post.title %}">{{post.title}}</a></h5>
-    <span class="text-muted">{{post.creation_date}}</span>
-    <p class="card-text">{{post.content |safe| truncatewords:50}}</p>
-    <a href="{% url 'view_post' post.title %}" class="btn btn-primary">Read More>></a>
-    {% if user.username == user_data.username %}
-      <a href="{% url 'delete_post' post.title %}" class="btn btn-danger float-right">Delete</a>
-    {% endif %}
-
-  </div>
-</div>
-
-  {% endfor %}
-
-  {% else %}
-    <div class="card-body">
-      <h1 class="display-4">No Posts Yet</h1>
+    <div class="">
+      <div class="card-body">
+        <h2 class="card-title">{{user_data.username}}</h2>
+        <h2 class="card-title">{{user_data.email}}</h2>
+        <br />
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="card mx-5 my-3" style="display: flex; align-items: center">
+  <h3>Posts({{user_posts.count }})</h3>
+  <br />
+  {% if user_posts %} {% for post in user_posts %}
+
+  <div
+    class="card"
+    style="
+      border: 2px solid;
+      min-width: 80%;
+      max-width: 80%;
+      margin-bottom: 10px;
+    "
+  >
+    <div class="card-body">
+      <h5 class="card-title">
+        <a href="{% url 'view_post' post.title %}">{{post.title}}</a>
+      </h5>
+      <span class="text-muted">{{post.creation_date}}</span>
+      <p class="card-text">{{post.content |safe| truncatewords:50}}</p>
+      <a href="{% url 'view_post' post.title %}" class="btn btn-primary"
+        >Read More>></a
+      >
+      {% if user.username == user_data.username %}
+      <a
+        href="{% url 'delete_post' post.title %}"
+        class="btn btn-danger float-right"
+        >Delete</a
+      >
+      {% endif %}
+    </div>
+  </div>
+
+  {% endfor %} {% else %}
+  <div class="card-body">
+    <h1 class="display-4">No Posts Yet</h1>
+  </div>
   {% endif %}
-
-
 </div>
 
 {% endblock %}

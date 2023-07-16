@@ -38,12 +38,12 @@
         <ul class="list-unstyled">
           {% if post_comments %}
           {% for comment in post_comments %}
-            <li class="media">
+            <li class="media" style="display: list-item;">
             <div class="" style="display:inline-block; width: 60%;">
               <h5 class="mt-0 mb-1">{{comment.name}}</h5>
                 <p>{{comment.comment}} </p>
             </div>
-                <div>
+                <div style="display: flex;">
                     {% if user.username == post_data.user.username %}
                         <a href="{% url 'delete_comment' post_data.title comment.id %}" class="btn btn-danger float-right">Delete</a>
                     {% endif %}
@@ -85,18 +85,11 @@
     Related Posts
   </p>
   {% for post in all_posts %}
-  	<button type="button" class="list-group-item list-group-item-action"><a href="{{post.title}}">{{post.title}}</a></button>
+  	<button type="button" class="list-group-item list-group-item-action"><a href=""{% url 'view_post' post.title %}"">{{post.title}}</a></button>
   {% endfor %}
 </div>
 </div>
-    <br>
-    <br>
-
-
-
-
-
-
-
+<br>
+<br>
 
 {% endblock %}
