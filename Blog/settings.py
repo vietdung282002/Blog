@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ["vietdung282002.pythonanywhere.com", "127.0.0.1"]
 
 # Application definition
 
-SITE_ID = 2
+SITE_ID = 5
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -69,6 +69,12 @@ CKEDITOR_CONFIGS = {
                 'filebrowser',
             ]
         ),
+        'stylesSet': [
+            {
+                "element": 'img',
+                "attributes": {'style': 'width: fit-content;max-height: none;'},
+            },
+        ],
     },
 }
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
