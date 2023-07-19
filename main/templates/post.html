@@ -44,7 +44,7 @@
                 <p>{{comment.comment}} </p>
             </div>
                 <div style="display: flex;">
-                    {% if user.username == post_data.user.username %}
+                    {% if user.username == post_data.user.username or user.username == comment.name %}
                         <a href="{% url 'delete_comment' post_data.title comment.id %}" class="btn btn-danger float-right">Delete</a>
                     {% endif %}
                 </div>
