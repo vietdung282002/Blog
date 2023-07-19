@@ -10,11 +10,11 @@
 	<span class="display-4" style="color:red">{{search_term}}</span>
 	<hr>
     {% for result in search_result %}
-    <div class="card w-75 my-3" style="border: 2px solid;">
+    <div class="card my-3" style="border: 2px solid;">
   <div class="card-body">
     <a href="{% url 'view_post' result.title %}"><h5 class="card-title">{{result.title}}</h5></a>
     <span class="text-muted">{{result.creation_date}}</span>
-    <span class="text-muted"> · By <a href="{% url 'profile' result.user.username %}">{{result.user.first_name}} {{result.user.last_name}}</a></span>
+    <span class="text-muted"> · By <a href="{% url 'profile' result.user.username %}">{{result.user.username}} </a></span>
     <hr>
     <p class="card-text">{{result.content |safe| truncatewords:50}}</p>
     <a href="{% url 'view_post' result.title %}" class="btn btn-primary">Read More</a>

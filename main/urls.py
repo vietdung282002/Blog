@@ -17,6 +17,4 @@ urlpatterns = [
          views.delete_comment, name='delete_comment'),
 
     path("logout", views.logout_view, name='logout'),
-
-
 ]

@@ -24,6 +24,7 @@ def logout_view(request):
 
 
 def search(request):
+    print("121312")
     query = request.GET.get('query')
     search_user = NewUser.objects.filter(username=query)
     search_user_posts = Post.objects.filter(user__username__icontains=query)
