@@ -39,7 +39,7 @@
           {% if post_comments %}
           {% for comment in post_comments %}
             <li class="media" style="display: list-item;">
-            <div class="" style="display:inline-block; width: 60%;">
+            <div class="" style="display:inline-block; width: 80%;">
               <h5 class="mt-0 mb-1"><a href="{% url 'profile' comment.name %}">{{comment.name}}</a></h5>
                 <p>{{comment.comment}} </p>
             </div>
@@ -65,7 +65,7 @@
         </div>
         <form action="{% url 'add_comment' post_data.title user.username %}" method="post">
           {% csrf_token %}
-            <textarea style="width:300px;" name="comment" placeholder="Add Comment..."></textarea>
+            <textarea style="width:830px;height: 144px;" name="comment" placeholder="Add Comment..."></textarea>
             <br><br>
             <input type="submit" name="" class="btn btn-primary" value="Add Comment">
         </form>
@@ -83,7 +83,7 @@
           {% if post_comments %}
           {% for comment in post_comments %}
             <li class="media" style="display: list-item;">
-            <div class="" style="display:inline-block; width: 60%;">
+            <div class="" style="display:inline-block; width: 80%;">
               <h5 class="mt-0 mb-1"><a href="{% url 'profile' comment.name %}">{{comment.name}}</a></h5>
                 <p>{{comment.comment}} </p>
             </div>
