@@ -40,7 +40,7 @@
           {% for comment in post_comments %}
             <li class="media" style="display: list-item;">
             <div class="" style="display:inline-block; width: 60%;">
-              <h5 class="mt-0 mb-1">{{comment.name}}</h5>
+              <h5 class="mt-0 mb-1"><a href="{% url 'profile' comment.name %}">{{comment.name}}</a></h5>
                 <p>{{comment.comment}} </p>
             </div>
                 <div style="display: flex;">
@@ -69,6 +69,34 @@
             <br><br>
             <input type="submit" name="" class="btn btn-primary" value="Add Comment">
         </form>
+
+    </div>
+</div>
+  {% else %}
+<div class="container">
+    <div class="container my-2">
+        <h2>Comments</h2>
+        <div class="w-75">
+        <hr>
+        </div>
+        <ul class="list-unstyled">
+          {% if post_comments %}
+          {% for comment in post_comments %}
+            <li class="media" style="display: list-item;">
+            <div class="" style="display:inline-block; width: 60%;">
+              <h5 class="mt-0 mb-1"><a href="{% url 'profile' comment.name %}">{{comment.name}}</a></h5>
+                <p>{{comment.comment}} </p>
+            </div>
+            </li>
+            <br>
+            <br>
+            {% endfor %}
+
+            {% else %}
+            <h5>No Comments Yet.</h5>
+            {% endif %}
+
+        </ul>
 
     </div>
 </div>
